@@ -1,0 +1,31 @@
+services:
+  event-finder-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: event-finder-110426-bot
+    container_name: event-finder-110426-bot
+    env_file: .env
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os, signal; os.kill(1, 0)"]
+      interval: 30s
+      timeout: 10s
+      start_period: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - event-finder-110426-net
+
+networks:
+  event-finder-110426-net:
+    name: event-finder-110426-net
