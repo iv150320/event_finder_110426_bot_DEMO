@@ -50,7 +50,7 @@ jobs:
         run: |
           docker run -d \
             --name smoke-test \
-            -e TELEGRAM_BOT_TOKEN=fake-token-for-ci \
+            -e TELEGRAM_BOT_TOKEN=${{ secrets.CI_BOT_TOKEN }} \
             -e ALLOWED_USERS=123456 \
             -e ICS_PORT=8081 \
             -p 8081:8081 \
