@@ -51,7 +51,7 @@ jobs:
           docker run -d \
             --name smoke-test \
             -e TELEGRAM_BOT_TOKEN=${{ secrets.CI_BOT_TOKEN }} \
-            -e ALLOWED_USERS=123456 \
+            -e ALLOWED_USERS=YOUR_USER_ID \
             -e ICS_PORT=8081 \
             -p 8081:8081 \
             event-finder-bot
